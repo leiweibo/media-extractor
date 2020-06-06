@@ -48,6 +48,9 @@ export default {
 .login {
   width: 100%;
   height: 100%;
+  background: #000;
+  background-size: cover;
+  position: fixed;
 }
 
 .login-box {
