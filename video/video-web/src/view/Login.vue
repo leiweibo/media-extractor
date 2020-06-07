@@ -48,7 +48,8 @@ export default {
 .login {
   width: 100%;
   height: 100%;
-  background: #000;
+  background: -webkit-image-set(url(~@/assets/images/login_bg@1x.png) 1x, url(~@/assets/images/login_bg@2x.png) 2x) center bottom no-repeat rgb(255, 255, 255);
+
   background-size: cover;
   position: fixed;
 }
@@ -65,7 +66,7 @@ export default {
 }
 
 .login-captcha {
-  height: 40px;
+  height: 37px;
 }
 
 .item-btn {

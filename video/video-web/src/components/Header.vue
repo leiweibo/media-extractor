@@ -7,7 +7,7 @@
 </template>
 
 <style scoped>
-.head-wrap{
-
+body {
+  background: #ffffff;
 }
 </style>
