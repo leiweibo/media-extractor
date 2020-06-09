@@ -48,4 +48,11 @@ body {
 .container {
     height: 100%;
 }
+.el-main {
+  padding: 1px;
+}
+.el-input__inner {
+  height: 60px;
+  font-size:20px !important;
+}
 </style>

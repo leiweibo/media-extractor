@@ -7,6 +7,11 @@ import MainLandscape from '@/view/Main-Landscape'
 
 Vue.use(Router)
 
+const originalPush = Router.prototype.push
+Router.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 export default new Router({
   mode: 'hash',
   routes: [
@@ -73,6 +78,11 @@ export default new Router({
           path: '/basic_layout1',
           name: 'BasicLayout',
           component: () => import('@/components/tmp/BasicLayout')
+        },
+        {
+          path: '/video_extractor',
+          name: 'VideoExtractor',
+          component: () => import('@/components/VideoExtractor')
         }
       ]
     }
