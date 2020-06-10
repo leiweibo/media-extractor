@@ -1,11 +1,13 @@
 <template>
   <div class="workspace">
-    <div class="workspace-box">
+    <div :class="searchClass">
       <el-form ref="extractorForm" :model="extractorForm">
         <el-form-item class="input-field"  size="large">
-          <el-input size="large" v-model="extractorForm.url"></el-input>
+          <el-input size="large" v-model="extractorForm.url" @input="onMainPageUrlInput">
+            <el-button slot="append" :icon="actionBtnIcon"></el-button>
+          </el-input>
         </el-form-item>
-    </el-form>
+      </el-form>
     </div>
   </div>
 </template>
@@ -15,6 +17,36 @@ export default {
     return {
       extractorForm: {
         url: ''
+      },
+      searchClass: 'workspace-box',
+      actionBtnIcon: 'el-icon-more'
+    }
+  },
+  methods: {
+    onMainPageUrlInput (value) {
+      var state = this.getInputState(value)
+      switch (state) {
+        case 0:
+          this.actionBtnIcon = 'el-icon-more'
+          this.searchClass = 'workspace-box'
+          break
+        case 1:
+          this.actionBtnIcon = 'el-icon-check'
+          this.searchClass = 'workspace-box-searching'
+          break
+        case 2:
+          this.actionBtnIcon = 'el-icon-close'
+          this.searchClass = 'workspace-box'
+          break
+      }
+    },
+    getInputState (value) {
+      if (value === '123') {
+        return 1 // 正确
+      } else if (value.length === 0) {
+        return 0 // 无内容输入
+      } else {
+        return 2 // 内容有误
       }
     }
   }
@@ -39,5 +71,11 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     padding-top: 15%;
+  }
+  .workspace-box-searching {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 3%;
   }
 </style>
