@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Input, Form, FormItem, Row, Col, Button, Container, Header, Aside, Main, Menu, Submenu, MenuItem, MenuItemGroup, Image, Carousel, CarouselItem } from 'element-ui'
+import { Input, Form, FormItem, Row, Col, Button, Container, Header, Aside, Main, Menu, Submenu, MenuItem, MenuItemGroup, Image, Scrollbar } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(Input)
@@ -17,5 +17,4 @@ Vue.use(Submenu)
 Vue.use(MenuItem)
 Vue.use(MenuItemGroup)
 Vue.use(Image)
-Vue.use(Carousel)
-Vue.use(CarouselItem)
+Vue.use(Scrollbar)
