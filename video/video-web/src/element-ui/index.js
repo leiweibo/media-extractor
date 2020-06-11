@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Input, Form, FormItem, Row, Col, Button, Container, Header, Aside, Main, Menu, Submenu, MenuItem, MenuItemGroup } from 'element-ui'
+import { Input, Form, FormItem, Row, Col, Button, Container, Header, Aside, Main, Menu, Submenu, MenuItem, MenuItemGroup, Image } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(Input)
@@ -16,3 +16,4 @@ Vue.use(Menu)
 Vue.use(Submenu)
 Vue.use(MenuItem)
 Vue.use(MenuItemGroup)
+Vue.use(Image)
