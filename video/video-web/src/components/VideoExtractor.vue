@@ -8,41 +8,20 @@
           </el-input>
         </el-form-item>
       </el-form>
-      <!-- <el-row :gutter="24">
-        <el-col :span="12">
-          <div class="video-view">
-            <el-image :src="imgUrl"></el-image>
-          </div>
-        </el-col>
-        <el-col :span="12">
-          <div class="video-view">
-            <el-image :src="imgUrl"></el-image>
-          </div>
-        </el-col>
-      </el-row>
-
-      <el-row>
-        <el-col :span="12">
-          <div class="video-view">
-            <el-image :src="imgUrl"></el-image>
-          </div>
-        </el-col>
-        <el-col :span="12">
-          <div class="video-view">
-            <el-image :src="imgUrl"></el-image>
-          </div>
-        </el-col>
-      </el-row> -->
-
-      <el-row :gutter="20">
-        <el-col :span="8"><el-image :src="imgUrl"></el-image></el-col>
-        <el-col :span="8"><el-image :src="imgUrl"></el-image></el-col>
-      </el-row>
-      <el-row :gutter="20">
-        <el-col :span="8"><el-image :src="imgUrl"></el-image></el-col>
-        <el-col :span="8"><el-image :src="imgUrl"></el-image></el-col>
-      </el-row>
     </div>
+    <div class="videoLayout">
+        <el-row :gutter="20">
+          <el-col :span="24">
+            <video controls="" justify="space-between" autoplay="false" name="media"><source src="http://mpvideo.qpic.cn/0bf25aaasaaaqaajmgotafpfb2gdbhuaacia.f10003.mp4?dis_k=9816269c1500c66bc34399d75379d039&dis_t=1591881041" type="video/mp4"></video>
+          </el-col>
+          <!-- <el-col :span="8">
+            <video controls="" autoplay="false" name="media"><source src="http://mpvideo.qpic.cn/0bf25aaasaaaqaajmgotafpfb2gdbhuaacia.f10003.mp4?dis_k=9816269c1500c66bc34399d75379d039&dis_t=1591881041" type="video/mp4"></video>
+          </el-col>
+          <el-col :span="8">
+            <video controls="" autoplay="false" name="media"><source src="http://mpvideo.qpic.cn/0bf25aaasaaaqaajmgotafpfb2gdbhuaacia.f10003.mp4?dis_k=9816269c1500c66bc34399d75379d039&dis_t=1591881041" type="video/mp4"></video>
+          </el-col> -->
+        </el-row>
+      </div>
   </div>
 </template>
 <script>
@@ -113,6 +92,13 @@ export default {
     transform: translateX(-50%);
     padding-top: 3%;
   }
+  .videoLayout {
+    position: absolute;
+    padding-top: 10%;
+    width: 600px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   .video-view {
     width: 338px;
     height: 190px;
@@ -140,17 +126,13 @@ export default {
     padding: 10px 0;
     background-color: #f9fafc;
   }
-  img {
-    vertical-align: middle;
+  video {
     max-height: 100%;
     max-width: 100%;
   }
 
   .el-row {
     margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
   .el-col {
     border-radius: 4px;
