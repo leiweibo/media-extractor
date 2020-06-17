@@ -11,7 +11,7 @@
     </div>
     <el-scrollbar class="videoLayout" wrap-class="default-scrollbar__wrap"  view-class="p20-scrollbar__view" v-if="videoLayoutVisible">
       <el-row :gutter="20">
-        <el-col :span="8" v-for="(item, index) in videoUrls" :key="index">
+        <el-col :span="8" :offset="0" v-for="(item, index) in videoUrls" :key="index">
           <video controls="" autoplay="false" name="media"><source :src="item.url" type="video/mp4"></video>
         </el-col>
       </el-row>
@@ -23,9 +23,9 @@ export default {
   data () {
     return {
       extractorForm: {
-        url: ''
+        url: 'https://mp.weixin.qq.com/s/C4vorgQHz79XaBwa8pJRRg'
       },
-      searchClass: 'workspace-box-searching',
+      searchClass: 'workspace-box',
       actionBtnIcon: 'el-icon-more',
       imgUrl: 'http://mmbiz.qpic.cn/mmbiz_jpg/aaVJqS7LaMIxrLeH1aCFvYSxcnfnib6jL3dPtaK4yyydJQMIPMAYVftBtAksBaMfCzKu2ciaX7xqa7SdLI7D5x6A/0?wx_fmt=jpeg',
       videoLayoutVisible: false,
@@ -41,7 +41,7 @@ export default {
       console.log(formData)
       this.modal_loading = this.$loading({
         lock: true,
-        text: '上传中...',
+        text: '提取中...',
         spinner: 'el-icon-loading',
         background: 'rgba(0,0,0,0.7)'
       })
@@ -78,13 +78,13 @@ export default {
           break
         case 2:
           this.actionBtnIcon = 'el-icon-check'
-          this.searchClass = 'workspace-box'
+          this.searchClass = 'workspace-box-searching'
           this.videoLayoutVisible = false
           break
       }
     },
     getInputState (value) {
-      if (value === '123') {
+      if (value.length > 0) {
         return 1 // 正确
       } else if (value.length === 0) {
         return 0 // 无内容输入

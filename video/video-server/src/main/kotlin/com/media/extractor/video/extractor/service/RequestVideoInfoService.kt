@@ -6,6 +6,7 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import com.media.extractor.video.extractor.common.api.res.VideoUrlInfoRaw2Res
 import com.media.extractor.video.extractor.common.api.res.VideoUrlInfoRawRes
 import com.media.extractor.video.extractor.common.api.res.VideoUrlInfoRes
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
@@ -22,6 +23,8 @@ class RequestVideoInfoService {
 
     @Autowired
     lateinit var restTemplate: RestTemplate
+    
+    val logger = LoggerFactory.getLogger(RequestVideoInfoService::class.java)
 
     fun requestVideoInfo(vid: String): VideoUrlInfoRes {
         if (vid.startsWith("wxv")) {
@@ -61,7 +64,7 @@ class RequestVideoInfoService {
             var rawRes = restTemplate.getForEntity(finalUrl, String::class.java)
             var rawResStr = rawRes.body
             rawResStr = rawResStr?.substring("txplayerJsonpCallBack_getinfo_67771".length + 1, rawResStr.length - 1)
-
+            logger.info("Get video info: {}", rawResStr)
             return VideoUrlInfoRes.convertFromRawRes(jsonToObject<VideoUrlInfoRaw2Res>(rawResStr!!))
         }
     }

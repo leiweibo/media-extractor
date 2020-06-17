@@ -15,7 +15,7 @@ class VideoUrlInfoRes {
         fun convertFromRawRes(rawRes: VideoUrlInfoRaw2Res): VideoUrlInfoRes {
             var result = VideoUrlInfoRes()
             result.title = rawRes.vl.vi[0].title
-            result.url = rawRes.vl.vi[0].ul.ui[0].url + rawRes.vl.vi[0].fileName + "?vkey=" + rawRes.vl.vi[0].fvkey
+            result.url = "http://ugcdx.qq.com/" + rawRes.vl.vi[0].fileName + "?vkey=" + rawRes.vl.vi[0].fvkey
             return result
         }
     }
