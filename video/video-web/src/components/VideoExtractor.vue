@@ -10,9 +10,9 @@
       </el-form>
     </div>
     <el-scrollbar class="videoLayout" wrap-class="default-scrollbar__wrap"  view-class="p20-scrollbar__view" v-if="videoLayoutVisible">
-      <el-row :gutter="20">
-        <el-col :span="8" :offset="0" v-for="(item, index) in videoUrls" :key="index">
-          <video controls="" autoplay="false" name="media"><source :src="item.url" type="video/mp4"></video>
+      <el-row :gutter="20" v-for="(item, index) in videoUrls" :key="index">
+        <el-col :span="8" :offset="closure(videoUrls[0], subIndex, index)"  v-for="(subItem, subIndex) in videoUrls[index]" :key="subIndex">
+          <video controls="" autoplay="false" name="media"><source :src="subItem.url" type="video/mp4"></video>
         </el-col>
       </el-row>
     </el-scrollbar>
@@ -93,6 +93,26 @@ export default {
       }
     },
     load () {
+    }
+  },
+  computed: {
+    closure () {
+      /**
+       * videoUrls 数组第一个元素，其实也是一个数组
+       */
+      return function (videoUrls, subIndex) {
+        if (videoUrls.length === 1) {
+          return 8
+        } else if (videoUrls.length === 2) {
+          if (subIndex === 0) {
+            return 4
+          } else {
+            return 0
+          }
+        } else {
+          return 0
+        }
+      }
     }
   }
 }

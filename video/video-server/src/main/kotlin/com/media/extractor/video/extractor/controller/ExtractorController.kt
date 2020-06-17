@@ -21,17 +21,29 @@ class ExtractorController {
     @Autowired
     lateinit var videoService: RequestVideoInfoService
 
+    // 最多3个，超过三个目前前端还没有适配
+    val arraySize = 3
     @PostMapping("/getVideoUrls")
     @ResponseBody
-    fun hello(@RequestBody req: VideoUrlExtractorReq):CommonResult<MutableList<VideoUrlInfoRes>> {
+    fun hello(@RequestBody req: VideoUrlExtractorReq):CommonResult<MutableList<MutableList<VideoUrlInfoRes>>> {
         println(req.url)
         var vids = service.requestWeb(req.url!!)
+        var finalResult = mutableListOf<MutableList<VideoUrlInfoRes>>()
         var results = mutableListOf<VideoUrlInfoRes>()
 
         for(vid in vids) {
             var res = videoService.requestVideoInfo(vid)
-            results.add(res)
+            if (results.size < arraySize) {
+                results.add(res)
+            }
+            if (results.size == arraySize) {
+                finalResult.add(results.toMutableList())
+                results.clear()
+            }
         }
-        return CommonResult.success(results)
+        if (results.size > 0) {
+            finalResult.add(results)
+        }
+        return CommonResult.success(finalResult)
     }
 }
